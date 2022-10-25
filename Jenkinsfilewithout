@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('multistgbuild without buildkit') {
+        stage('without buildkit') {
             steps {
-                sh 'docker build -t malki:latest --target post .'
+                sh 'docker build -t malki:latest .'
             }
         }
     }
