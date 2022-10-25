@@ -1,4 +1,4 @@
-   pipeline {
+pipeline {
     agent any
 
     stages {
@@ -17,5 +17,30 @@
                 sh 'DOCKER_BUILDKIT=1 docker build -t malki:latest --target test --no-cache .'
             }
         }
+        stage('Security') {
+            steps {
+                sh 'DOCKER_BUILDKIT=1 docker build -t malki:latest --target security --no-cache .'
+            }
+        }
+        stage('back-end') {
+            steps {
+                sh 'DOCKER_BUILDKIT=1 docker build -t malki:latest --target back-end --no-cache .'
+            }
+        }
+        stage('front-end') {
+            steps {
+                sh 'DOCKER_BUILDKIT=1 docker build -t malki:latest --target front-end --no-cache .'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'DOCKER_BUILDKIT=1 docker build -t malki:latest --target deploy --no-cache .'
+            }    
+        }
+        stage('Post') {
+            steps {
+                sh 'DOCKER_BUILDKIT=1 docker build -t malki:latest --target post --no-cache .'
+            }
+        }                
     }
 }
