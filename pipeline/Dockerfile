@@ -1,13 +1,13 @@
 FROM alpine:latest as pre-build
-COPY ./helloworld.txt ./code/helloworld.txt
+COPY ./hello.txt ./code/hello.txt
 RUN echo "this is a PRE-BUILD phase"
 
 FROM alpine:latest as build
-COPY --from=pre-build ./code/helloworld.txt ./build/helloworld.txt
+COPY --from=pre-build ./code/hello.txt ./build/hello.txt
 RUN echo "this is a build phase"
 
 FROM alpine:latest as test
-COPY --from=build ./build/helloworld.txt ./test/helloworld.txt
+COPY --from=build ./build/hello.txt ./test/hello.txt
 RUN echo "this is a test phase"
 
 FROM alpine:latest as security
