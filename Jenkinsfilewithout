@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('multistgbuild without buildkit') {
             steps {
-                sh 'docker build -t malki:latest --target post .'
+                sh 'docker build -t malki:latest --target build .'
             }
         }
     }
