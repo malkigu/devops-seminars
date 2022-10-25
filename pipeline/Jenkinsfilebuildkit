@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Pre-build stg') {
+            steps {
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target pre-build .'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target build .'
+            }
+        }
+        stage('test') {
+            steps {
+                sh 'DOCKER_BUILDKIT=1 docker build -t elad:latest --target test .'
+            }
+        }
+    }
+}
